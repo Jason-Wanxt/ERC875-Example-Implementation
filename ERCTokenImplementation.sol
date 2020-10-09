@@ -194,9 +194,9 @@ contract Token is ERC875
         bool isadmin = msg.sender == admin;
         for(uint i = 0; i < tokenIndices.length; i++)
         {
-            require(inventory[_from][i] != 0 || isadmin);
             //pushes each element with ordering
             uint index = uint(tokenIndices[i]);
+	    require(inventory[msg.sender][index] != 0|| isadmin);
             inventory[_to].push(inventory[_from][index]);
             inventory[_from][index] = 0;
         }
